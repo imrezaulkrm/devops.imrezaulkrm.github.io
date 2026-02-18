@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Md Rezaul Karim — Cloud & DevOps Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/final.css" />
+    <style></style>
+  </head>
+  <body>
+    <canvas id="bgCanvas"></canvas>
+    <div class="bg-overlay"></div>
+
+    <!-- NAV -->
+    <nav id="nav">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <div class="nav-logo-dot"></div>
+          Rezaul<span>Karim</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#certifications">Credentials</a></li>
+          <li><a href="#passion">Photography</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-inner">
+        <!-- LEFT -->
+        <div class="hero-left fadeup">
+          <!-- Avatar -->
+          <div class="hero-avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-photo">
+              <img
+                src="img/imrezaulkrm.jpg"
+                alt="Md Rezaul Karim"
+                onerror="
+                  this.src =
+                    'https://ui-avatars.com/api/?name=Rezaul+Karim&size=200&background=10b981&color=0a0e13&bold=true&font-size=0.35'
+                "
+              />
+            </div>
+            <div class="avatar-status"></div>
+          </div>
+
+          <h1 class="hero-name">Md Rezaul<span class="hero-name-line2"> Karim</span></h1>
+
+          <div class="hero-title">
+            <div class="hero-title-sep"></div>
+            Cloud &amp; DevOps Engineer
+          </div>
+
+          <p class="hero-desc">
+            Passionate about building scalable infrastructure, automating deployments, and crafting
+            DevOps pipelines that make engineering teams move faster and sleep better.
+          </p>
+
+          <div class="hero-cta">
+            <a href="file/resumeOfRezaulKarim.pdf" class="btn btn-p">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+              Download Resume
+            </a>
+            <a href="#contact" class="btn btn-s">Get in Touch</a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <div class="stat-val">3+</div>
+              <div class="stat-lbl">Years Exp.</div>
+            </div>
+            <div>
+              <div class="stat-val">50+</div>
+              <div class="stat-lbl">Projects</div>
+            </div>
+            <div>
+              <div class="stat-val">99.9%</div>
+              <div class="stat-lbl">Uptime SLA</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT - TERMINAL -->
+        <div class="terminal-wrap fadeup" style="transition-delay: 0.2s">
+          <div class="t-bar">
+            <div class="t-dots">
+              <div class="t-dot"></div>
+              <div class="t-dot"></div>
+              <div class="t-dot"></div>
+            </div>
+            <div class="t-title">rezaul@devops:~</div>
+            <div style="width: 60px"></div>
+          </div>
+          <div class="t-body" id="terminal"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">About Me</span>
+          <h2 class="sec-title">Simplifying Complex Systems</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-img-wrap fadeup">
+            <div class="about-img-glow"></div>
+            <div class="about-img-frame">
+              <img
+                src="img/imrezaulkrm.jpg"
+                alt="Md Rezaul Karim"
+                onerror="
+                  this.src =
+                    'https://ui-avatars.com/api/?name=Rezaul+Karim&size=500&background=10b981&color=0a0e13&bold=true&font-size=0.4'
+                "
+              />
+              <div class="about-img-label">
+                <div class="about-img-dot"></div>
+                <div class="about-img-text">Open to Opportunities</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-content fadeup" style="transition-delay: 0.15s">
+            <h2>Hi, I'm <span class="hl">Md Rezaul Karim</span></h2>
+            <p>
+              A <strong>Cloud & DevOps Engineer</strong> from Bangladesh with
+              <span class="hl">3+ years of hands-on experience</span> building and maintaining
+              production cloud infrastructure. I specialize in automating deployments, implementing
+              CI/CD pipelines, and ensuring system reliability at scale.
+            </p>
+            <p>
+              My journey in tech has been driven by
+              <strong>curiosity and a passion for solving complex problems</strong>. I believe in
+              writing clean infrastructure code, maintaining comprehensive documentation, and
+              building systems that are resilient and scalable.
+            </p>
+            <p>
+              I work with modern DevOps tools like
+              <span class="hl">Kubernetes, Docker, Terraform, and AWS</span> to create deployment
+              pipelines that save time and reduce human error significantly.
+            </p>
+            <p>
+              Outside of work, you'll find me behind a camera exploring nature, or brewing the
+              perfect cup of coffee ☕
+            </p>
+            <div class="metrics">
+              <div class="met">
+                <span class="met-n">3+</span><span class="met-l">Years Experience</span>
+              </div>
+              <div class="met">
+                <span class="met-n">12+</span><span class="met-l">Tools Mastered</span>
+              </div>
+              <div class="met">
+                <span class="met-n">∞</span><span class="met-l">Git Commits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">Technical Expertise</span>
+          <h2 class="sec-title">Skills & Technologies</h2>
+          <p class="sec-sub">
+            Production-grade experience across cloud platforms, containers, CI/CD, and
+            infrastructure automation
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="sk-card fadeup">
+            <div class="sk-head">
+              <div class="sk-icon">☁️</div>
+              <h3>Cloud Platforms</h3>
+            </div>
+            <div class="sk-items">
+              <div class="sk-item">
+                <span class="sk-name">AWS (EC2, S3, RDS, Lambda)</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.88"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Google Cloud Platform</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.65"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Microsoft Azure</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.6"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sk-card fadeup">
+            <div class="sk-head">
+              <div class="sk-icon">🐳</div>
+              <h3>Containers & K8s</h3>
+            </div>
+            <div class="sk-items">
+              <div class="sk-item">
+                <span class="sk-name">Docker</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.93"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Kubernetes</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.87"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Helm Charts</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.7"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sk-card fadeup">
+            <div class="sk-head">
+              <div class="sk-icon">⚙️</div>
+              <h3>CI/CD Pipelines</h3>
+            </div>
+            <div class="sk-items">
+              <div class="sk-item">
+                <span class="sk-name">Jenkins</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.9"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">GitHub Actions</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.88"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">ArgoCD / GitOps</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.7"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sk-card fadeup">
+            <div class="sk-head">
+              <div class="sk-icon">🏗️</div>
+              <h3>Infrastructure as Code</h3>
+            </div>
+            <div class="sk-items">
+              <div class="sk-item">
+                <span class="sk-name">Terraform</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.88"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Ansible</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.72"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">CloudFormation</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.65"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sk-card fadeup">
+            <div class="sk-head">
+              <div class="sk-icon">📊</div>
+              <h3>Monitoring & Observability</h3>
+            </div>
+            <div class="sk-items">
+              <div class="sk-item">
+                <span class="sk-name">Prometheus</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.86"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Grafana</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.86"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">ELK Stack</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.68"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sk-card fadeup">
+            <div class="sk-head">
+              <div class="sk-icon">🐧</div>
+              <h3>OS & Scripting</h3>
+            </div>
+            <div class="sk-items">
+              <div class="sk-item">
+                <span class="sk-name">Linux (Ubuntu / CentOS)</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.93"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Bash Scripting</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.88"></div></div>
+                  <span class="sk-lvl">ADV</span>
+                </div>
+              </div>
+              <div class="sk-item">
+                <span class="sk-name">Python</span>
+                <div class="sk-right">
+                  <div class="sk-bar"><div class="sk-fill" style="--s: 0.7"></div></div>
+                  <span class="sk-lvl">MID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">Career Journey</span>
+          <h2 class="sec-title">Professional Experience</h2>
+          <p class="sec-sub">
+            Building impactful cloud solutions and DevOps pipelines across industries
+          </p>
+        </div>
+        <div class="exp-wrap">
+          <div class="exp-card fadeup">
+            <div class="exp-top">
+              <div>
+                <div class="exp-period"><span class="exp-live"></span>2024 — Present</div>
+                <div class="exp-type">Freelance / Remote</div>
+              </div>
+              <div style="text-align: right">
+                <div style="font-size: 2rem">🚀</div>
+              </div>
+            </div>
+            <div class="exp-role">Senior DevOps Engineer</div>
+            <div class="exp-co">Freelance — Multiple Clients</div>
+            <p class="exp-desc">
+              Leading cloud infrastructure projects for multiple clients. Designing and implementing
+              CI/CD pipelines, managing Kubernetes clusters, and optimizing cloud costs. Reduced
+              deployment time by <strong style="color: var(--accent)">70%</strong> through
+              automation. Improved system reliability with comprehensive monitoring and alerting
+              systems.
+            </p>
+            <div class="exp-tags">
+              <span class="exp-tag">Kubernetes</span>
+              <span class="exp-tag">Terraform</span>
+              <span class="exp-tag">AWS</span>
+              <span class="exp-tag">ArgoCD</span>
+              <span class="exp-tag">Prometheus</span>
+            </div>
+          </div>
+
+          <div class="exp-card fadeup" style="transition-delay: 0.1s">
+            <div class="exp-top">
+              <div>
+                <div class="exp-period">2022 — 2024</div>
+                <div class="exp-type">Full-Time</div>
+              </div>
+              <div style="text-align: right">
+                <div style="font-size: 2rem">⚙️</div>
+              </div>
+            </div>
+            <div class="exp-role">DevOps Engineer</div>
+            <div class="exp-co">Tech Company — Dhaka, BD</div>
+            <p class="exp-desc">
+              Managed AWS infrastructure serving
+              <strong style="color: var(--accent)">100K+ users</strong>. Implemented monitoring with
+              Prometheus and Grafana. Automated infrastructure provisioning using Terraform,
+              reducing manual tasks by <strong style="color: var(--accent)">80%</strong>. Built and
+              maintained CI/CD pipelines with Jenkins and GitHub Actions.
+            </p>
+            <div class="exp-tags">
+              <span class="exp-tag">Jenkins</span>
+              <span class="exp-tag">Docker</span>
+              <span class="exp-tag">AWS</span>
+              <span class="exp-tag">Grafana</span>
+              <span class="exp-tag">GitHub Actions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & EDUCATION -->
+    <section id="certifications">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">Credentials</span>
+          <h2 class="sec-title">Certifications & Education</h2>
+          <p class="sec-sub">
+            Industry-recognized certifications and academic foundation that validate real-world
+            expertise
+          </p>
+        </div>
+
+        <!-- CERTS -->
+        <div class="cert-grid">
+          <div class="cert-card fadeup">
+            <div class="cert-ico">☁️</div>
+            <div class="cert-name">AWS Certified Solutions Architect</div>
+            <div class="cert-by">Amazon Web Services</div>
+            <div class="cert-yr">2023 · Associate Level</div>
+            <span class="cert-badge">✓ Verified</span>
+          </div>
+          <div class="cert-card fadeup">
+            <div class="cert-ico">🐳</div>
+            <div class="cert-name">Certified Kubernetes Administrator</div>
+            <div class="cert-by">Cloud Native Computing Foundation</div>
+            <div class="cert-yr">2023 · CKA</div>
+            <span class="cert-badge">✓ Verified</span>
+          </div>
+          <div class="cert-card fadeup">
+            <div class="cert-ico">🏗️</div>
+            <div class="cert-name">HashiCorp Certified: Terraform Associate</div>
+            <div class="cert-by">HashiCorp</div>
+            <div class="cert-yr">2022 · Associate</div>
+            <span class="cert-badge">✓ Verified</span>
+          </div>
+          <div class="cert-card fadeup">
+            <div class="cert-ico">⚙️</div>
+            <div class="cert-name">DevOps Engineering on AWS</div>
+            <div class="cert-by">Amazon Web Services</div>
+            <div class="cert-yr">2022 · Specialization</div>
+            <span class="cert-badge">✓ Verified</span>
+          </div>
+          <div class="cert-card fadeup">
+            <div class="cert-ico">🐧</div>
+            <div class="cert-name">Linux Foundation Certified SysAdmin</div>
+            <div class="cert-by">Linux Foundation</div>
+            <div class="cert-yr">2021 · LFCS</div>
+            <span class="cert-badge">✓ Verified</span>
+          </div>
+          <div class="cert-card fadeup">
+            <div class="cert-ico">📊</div>
+            <div class="cert-name">Google Cloud Professional DevOps Engineer</div>
+            <div class="cert-by">Google Cloud</div>
+            <div class="cert-yr">2024 · Professional</div>
+            <span class="cert-badge">✓ Verified</span>
+          </div>
+        </div>
+
+        <!-- EDUCATION TIMELINE -->
+        <div class="fadeup">
+          <div class="edu-title-wrap">
+            <h3>Academic Background</h3>
+            <p>The foundation behind the cloud expertise</p>
+          </div>
+          <div class="edu-timeline">
+            <div class="edu-item">
+              <div class="edu-content-left">
+                <div class="edu-card">
+                  <div class="edu-period"><span class="edu-period-dot"></span>2018 — 2022</div>
+                  <div class="edu-degree">BSc in Computer Science &amp; Engineering</div>
+                  <div class="edu-inst">Gono Bishwabidyalay</div>
+                  <div class="edu-focus">
+                    Focus on system administration, networking, cloud computing, algorithms, and
+                    system design. Developed multiple DevOps and containerization projects.
+                  </div>
+                  <div class="edu-gpa">🎓 CSE Graduate</div>
+                </div>
+              </div>
+              <div class="edu-center">
+                <div class="edu-dot"></div>
+              </div>
+              <div class="edu-empty"></div>
+            </div>
+
+            <div class="edu-item">
+              <div class="edu-empty"></div>
+              <div class="edu-center">
+                <div class="edu-dot"></div>
+              </div>
+              <div class="edu-content-right">
+                <div class="edu-card">
+                  <div class="edu-period"><span class="edu-period-dot"></span>Completed 2018</div>
+                  <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+                  <div class="edu-inst">Science Group</div>
+                  <div class="edu-focus">
+                    Strong academic foundation in Mathematics, Physics and Chemistry. Cultivated
+                    analytical thinking and problem-solving skills essential for engineering.
+                  </div>
+                  <div class="edu-gpa">⭐ GPA 5.00 / 5.00</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="edu-item">
+              <div class="edu-content-left">
+                <div class="edu-card">
+                  <div class="edu-period"><span class="edu-period-dot"></span>Completed 2016</div>
+                  <div class="edu-degree">Secondary School Certificate (SSC)</div>
+                  <div class="edu-inst">Science Group</div>
+                  <div class="edu-focus">
+                    Excelled in science and mathematics, building the foundational knowledge that
+                    fueled a passion for technology and engineering.
+                  </div>
+                  <div class="edu-gpa">⭐ GPA 5.00 / 5.00</div>
+                </div>
+              </div>
+              <div class="edu-center">
+                <div class="edu-dot"></div>
+              </div>
+              <div class="edu-empty"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTOGRAPHY -->
+    <section id="passion">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">Beyond Code</span>
+          <h2 class="sec-title">Photography & Creativity</h2>
+          <p class="sec-sub">
+            When I'm not managing infrastructure, I capture the world through my lens
+          </p>
+        </div>
+
+        <div class="photo-intro fadeup">
+          <div class="photo-intro-left">
+            <h2>Through<br />the Lens</h2>
+            <p>
+              Photography is my creative escape. Just like DevOps requires
+              <strong>patience, precision, and timing</strong>, so does capturing the perfect shot.
+              Both disciplines teach me to see the whole system.
+            </p>
+            <p>
+              I explore <strong>nature, landscapes, urban life</strong> — always looking for the
+              frame within the chaos, much like finding the signal in the noise of distributed
+              systems.
+            </p>
+            <div class="parallels">
+              <div class="par-item">
+                <span class="par-l">Aperture</span><span class="par-arr">→</span
+                ><span class="par-r">K8s resource limits — controlling what enters</span>
+              </div>
+              <div class="par-item">
+                <span class="par-l">Shutter Speed</span><span class="par-arr">→</span
+                ><span class="par-r">Pipeline speed — every millisecond matters</span>
+              </div>
+              <div class="par-item">
+                <span class="par-l">Composition</span><span class="par-arr">→</span
+                ><span class="par-r">Architecture design — arranging for clarity</span>
+              </div>
+              <div class="par-item">
+                <span class="par-l">Golden Hour</span><span class="par-arr">→</span
+                ><span class="par-r">Zero-downtime deploy — timing is everything</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ph-stats">
+            <div class="phst"><span class="phsn">6</span><span class="phsl">Galleries</span></div>
+            <div class="phst"><span class="phsn">∞</span><span class="phsl">Moments</span></div>
+            <div class="phst">
+              <span class="phsn">📷</span><span class="phsl">Always Shooting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHOTO GALLERY GRID -->
+        <div class="fadeup">
+          <div class="folder-grid-top">
+            <!-- Large featured -->
+            <div class="folder-box" style="aspect-ratio: unset">
+              <div class="folder-header">
+                <span class="folder-ico">🌿</span>
+                <span class="folder-nm">nature/</span>
+                <span class="folder-cnt">slideshow</span>
+              </div>
+              <div class="folder-slide" style="height: 340px" id="fs-nature">
+                <div class="folder-placeholder">
+                  <div class="fp-icon">🌿</div>
+                  <div class="fp-text">Add photos to img/nature/</div>
+                </div>
+              </div>
+              <div class="folder-dots" id="fd-nature"></div>
+            </div>
+            <div class="folder-box">
+              <div class="folder-header">
+                <span class="folder-ico">🏙️</span><span class="folder-nm">urban/</span
+                ><span class="folder-cnt">slideshow</span>
+              </div>
+              <div class="folder-slide" style="height: 160px" id="fs-urban">
+                <div class="folder-placeholder">
+                  <div class="fp-icon">🏙️</div>
+                  <div class="fp-text">img/urban/</div>
+                </div>
+              </div>
+              <div class="folder-dots" id="fd-urban"></div>
+            </div>
+            <div class="folder-box">
+              <div class="folder-header">
+                <span class="folder-ico">🌄</span><span class="folder-nm">landscape/</span
+                ><span class="folder-cnt">slideshow</span>
+              </div>
+              <div class="folder-slide" style="height: 160px" id="fs-landscape">
+                <div class="folder-placeholder">
+                  <div class="fp-icon">🌄</div>
+                  <div class="fp-text">img/landscape/</div>
+                </div>
+              </div>
+              <div class="folder-dots" id="fd-landscape"></div>
+            </div>
+          </div>
+          <div class="folder-grid-bot">
+            <div class="folder-box">
+              <div class="folder-header">
+                <span class="folder-ico">🌅</span><span class="folder-nm">golden-hour/</span
+                ><span class="folder-cnt">slideshow</span>
+              </div>
+              <div class="folder-slide" style="height: 180px" id="fs-golden">
+                <div class="folder-placeholder">
+                  <div class="fp-icon">🌅</div>
+                  <div class="fp-text">img/golden-hour/</div>
+                </div>
+              </div>
+              <div class="folder-dots" id="fd-golden"></div>
+            </div>
+            <div class="folder-box">
+              <div class="folder-header">
+                <span class="folder-ico">🌊</span><span class="folder-nm">water/</span
+                ><span class="folder-cnt">slideshow</span>
+              </div>
+              <div class="folder-slide" style="height: 180px" id="fs-water">
+                <div class="folder-placeholder">
+                  <div class="fp-icon">🌊</div>
+                  <div class="fp-text">img/water/</div>
+                </div>
+              </div>
+              <div class="folder-dots" id="fd-water"></div>
+            </div>
+            <div class="folder-box">
+              <div class="folder-header">
+                <span class="folder-ico">📷</span><span class="folder-nm">street/</span
+                ><span class="folder-cnt">slideshow</span>
+              </div>
+              <div class="folder-slide" style="height: 180px" id="fs-street">
+                <div class="folder-placeholder">
+                  <div class="fp-icon">📷</div>
+                  <div class="fp-text">img/street/</div>
+                </div>
+              </div>
+              <div class="folder-dots" id="fd-street"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">Portfolio</span>
+          <h2 class="sec-title">Featured Projects</h2>
+          <p class="sec-sub">
+            Cloud infrastructure and DevOps automation projects — hover to pause, click to explore
+          </p>
+        </div>
+        <div class="proj-carousel fadeup">
+          <div class="proj-track running" id="projTrack"></div>
+        </div>
+        <p
+          style="
+            text-align: center;
+            margin-top: 1.25rem;
+            color: var(--muted);
+            font-size: 0.75rem;
+            font-family: &quot;JetBrains Mono&quot;, monospace;
+            letter-spacing: 0.05em;
+          "
+        >
+          ← SCROLL TO EXPLORE · HOVER TO PAUSE →
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-head fadeup">
+          <span class="sec-tag">Get In Touch</span>
+          <h2 class="sec-title">Let's Work Together</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="fadeup">
+            <h2>Contact Information</h2>
+            <p>
+              I'm currently available for freelance projects and full-time opportunities. Feel free
+              to reach out to discuss DevOps solutions or potential collaborations.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:rezaulkarim@example.com" class="contact-link">
+                <div class="contact-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-lbl">Email</div>
+                  <div class="contact-val">rezaulkarim@example.com</div>
+                </div>
+              </a>
+              <a href="tel:+8801871468781" class="contact-link">
+                <div class="contact-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-lbl">Phone</div>
+                  <div class="contact-val">+88 01871-468781</div>
+                </div>
+              </a>
+              <a
+                href="https://maps.app.goo.gl/812f8Cs2ttcxL24W6"
+                target="_blank"
+                class="contact-link"
+              >
+                <div class="contact-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-lbl">Location</div>
+                  <div class="contact-val">Savar, Dhaka, Bangladesh</div>
+                </div>
+              </a>
+            </div>
+            <div class="map-wrap">
+              <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=90.2093%2C23.8153%2C90.2693%2C23.8553&layer=mapnik&marker=23.8353%2C90.2393"
+                loading="lazy"
+                title="Savar Dhaka"
+              ></iframe>
+            </div>
+          </div>
+          <form
+            class="contact-form fadeup"
+            style="transition-delay: 0.15s"
+            onsubmit="return false;"
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label>Name</label><input type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label>Email</label><input type="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Subject</label
+              ><input type="text" placeholder="Project inquiry, collaboration..." />
+            </div>
+            <div class="form-group">
+              <label>Message</label
+              ><textarea placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-p">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="foot-inner">
+        <div class="foot-copy">© 2025 <span>Md Rezaul Karim</span>. All rights reserved.</div>
+        <div class="foot-right">
+          <a href="https://github.com/imrezaulkrm" target="_blank">GitHub</a>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          <a href="mailto:rezaul1203karim@gmail.com">Email</a>
+          <a
+            href="#"
+            class="btt"
+            onclick="
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              return false;
+            "
+          >
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <polyline points="18 15 12 9 6 15" />
+            </svg>
+            Back to top
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/final.js"></script>
+  </body>
+</html>

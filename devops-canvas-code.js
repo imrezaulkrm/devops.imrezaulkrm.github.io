@@ -1,0 +1,604 @@
+// ============================================================================
+// ADVANCED DEVOPS INFRASTRUCTURE CANVAS BACKGROUND
+// Network Topology + Code → Docker → K8s Pipeline Visualization
+// ============================================================================
+
+const canvas = document.getElementById('canvas'); // Your canvas element ID
+const ctx = canvas.getContext('2d');
+
+// Resize canvas
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// ============================================================================
+// COLORS & THEME
+// ============================================================================
+const theme = {
+  primary: '#10b981',
+  secondary: '#14b8a6',
+  accent: '#3b82f6',
+  warning: '#f59e0b',
+  bg: 'rgba(10, 14, 19, 0.1)',
+  text: '#e4e6eb',
+  textDim: '#9ca3af'
+};
+
+// ============================================================================
+// NODE CLASS - Represents infrastructure components
+// ============================================================================
+class InfraNode {
+  constructor(x, y, type, label) {
+    this.x = x;
+    this.y = y;
+    this.type = type; // 'internet', 'isp', 'cloud', 'local', 'docker', 'k8s'
+    this.label = label;
+    this.radius = this.getRadius();
+    this.pulse = Math.random() * Math.PI * 2;
+    this.connections = [];
+    this.icon = this.getIcon();
+    this.color = this.getColor();
+  }
+  
+  getRadius() {
+    const sizes = {
+      internet: 45,
+      isp: 40,
+      cloud: 50,
+      local: 35,
+      docker: 40,
+      k8s: 45
+    };
+    return sizes[this.type] || 30;
+  }
+  
+  getIcon() {
+    const icons = {
+      internet: '🌐',
+      isp: '📡',
+      cloud: '☁️',
+      local: '💻',
+      docker: '🐳',
+      k8s: '⎈'
+    };
+    return icons[this.type] || '●';
+  }
+  
+  getColor() {
+    const colors = {
+      internet: '#8b5cf6',
+      isp: '#3b82f6',
+      cloud: theme.primary,
+      local: '#f59e0b',
+      docker: '#0ea5e9',
+      k8s: '#326ce5'
+    };
+    return colors[this.type] || theme.primary;
+  }
+  
+  update() {
+    this.pulse += 0.03;
+  }
+  
+  draw() {
+    const pulseSize = Math.sin(this.pulse) * 4;
+    
+    // Outer glow
+    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius + 30);
+    gradient.addColorStop(0, this.color + '20');
+    gradient.addColorStop(1, 'transparent');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius + 30, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Main circle
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius + pulseSize, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(10, 14, 19, 0.85)';
+    ctx.fill();
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    
+    // Inner ring
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius - 10, 0, Math.PI * 2);
+    ctx.strokeStyle = this.color + '40';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    
+    // Icon
+    ctx.font = `${this.radius * 0.6}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = this.color;
+    ctx.fillText(this.icon, this.x, this.y);
+    
+    // Label
+    ctx.font = 'bold 13px monospace';
+    ctx.fillStyle = theme.text;
+    ctx.fillText(this.label, this.x, this.y + this.radius + 22);
+    
+    // Type label
+    ctx.font = '9px monospace';
+    ctx.fillStyle = theme.textDim;
+    ctx.fillText(this.type.toUpperCase(), this.x, this.y + this.radius + 38);
+  }
+}
+
+// ============================================================================
+// DATA PACKET - Animated data traveling between nodes
+// ============================================================================
+class DataPacket {
+  constructor(from, to, color) {
+    this.from = from;
+    this.to = to;
+    this.progress = 0;
+    this.speed = 0.008 + Math.random() * 0.007;
+    this.size = 5 + Math.random() * 4;
+    this.color = color || theme.primary;
+    this.trail = [];
+  }
+  
+  update() {
+    this.progress += this.speed;
+    
+    // Store trail positions
+    const x = this.from.x + (this.to.x - this.from.x) * this.progress;
+    const y = this.from.y + (this.to.y - this.from.y) * this.progress;
+    this.trail.unshift({x, y});
+    if (this.trail.length > 8) this.trail.pop();
+    
+    return this.progress >= 1;
+  }
+  
+  draw() {
+    // Draw trail
+    this.trail.forEach((pos, i) => {
+      const alpha = 1 - (i / this.trail.length);
+      const size = this.size * (1 - i / this.trail.length);
+      
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color.replace(')', `, ${alpha * 0.6})`).replace('rgb', 'rgba');
+      ctx.fill();
+    });
+    
+    // Draw main packet
+    const x = this.from.x + (this.to.x - this.from.x) * this.progress;
+    const y = this.from.y + (this.to.y - this.from.y) * this.progress;
+    
+    // Glow
+    const glow = ctx.createRadialGradient(x, y, 0, x, y, this.size * 3);
+    glow.addColorStop(0, this.color + '80');
+    glow.addColorStop(1, 'transparent');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(x, y, this.size * 3, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Main
+    ctx.beginPath();
+    ctx.arc(x, y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+}
+
+// ============================================================================
+// PIPELINE STAGE - Code → Build → Deploy flow
+// ============================================================================
+class PipelineStage {
+  constructor(x, y, label, icon, color) {
+    this.x = x;
+    this.y = y;
+    this.label = label;
+    this.icon = icon;
+    this.color = color;
+    this.width = 110;
+    this.height = 90;
+    this.active = false;
+    this.progress = 0;
+    this.completed = false;
+  }
+  
+  draw() {
+    // Background
+    const bgAlpha = this.active ? '20' : '08';
+    ctx.fillStyle = this.color + bgAlpha;
+    ctx.fillRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
+    
+    // Border
+    ctx.strokeStyle = this.active || this.completed ? this.color : this.color + '40';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
+    
+    // Corner accents
+    const cornerSize = 8;
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 3;
+    // Top-left
+    ctx.beginPath();
+    ctx.moveTo(this.x - this.width/2, this.y - this.height/2 + cornerSize);
+    ctx.lineTo(this.x - this.width/2, this.y - this.height/2);
+    ctx.lineTo(this.x - this.width/2 + cornerSize, this.y - this.height/2);
+    ctx.stroke();
+    // Bottom-right
+    ctx.beginPath();
+    ctx.moveTo(this.x + this.width/2, this.y + this.height/2 - cornerSize);
+    ctx.lineTo(this.x + this.width/2, this.y + this.height/2);
+    ctx.lineTo(this.x + this.width/2 - cornerSize, this.y + this.height/2);
+    ctx.stroke();
+    
+    // Icon
+    ctx.font = '32px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = this.active || this.completed ? this.color : theme.textDim;
+    ctx.fillText(this.icon, this.x, this.y - 12);
+    
+    // Label
+    ctx.font = 'bold 12px monospace';
+    ctx.fillStyle = theme.text;
+    ctx.fillText(this.label, this.x, this.y + 20);
+    
+    // Progress bar
+    if (this.active && this.progress > 0) {
+      const barWidth = this.width - 16;
+      const barHeight = 6;
+      const barX = this.x - barWidth/2;
+      const barY = this.y + this.height/2 - 12;
+      
+      // Background
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+      ctx.fillRect(barX, barY, barWidth, barHeight);
+      
+      // Progress
+      ctx.fillStyle = this.color;
+      ctx.fillRect(barX, barY, barWidth * this.progress, barHeight);
+      
+      // Percentage
+      ctx.font = '9px monospace';
+      ctx.fillStyle = theme.text;
+      ctx.fillText(`${Math.floor(this.progress * 100)}%`, this.x, barY + barHeight + 12);
+    }
+    
+    // Checkmark when completed
+    if (this.completed) {
+      ctx.font = '16px Arial';
+      ctx.fillStyle = this.color;
+      ctx.fillText('✓', this.x + this.width/2 - 12, this.y - this.height/2 + 12);
+    }
+  }
+  
+  activate() {
+    this.active = true;
+    this.progress = 0;
+    this.completed = false;
+  }
+  
+  update() {
+    if (this.active && this.progress < 1) {
+      this.progress += 0.015;
+      if (this.progress >= 1) {
+        this.active = false;
+        this.completed = true;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// BACKGROUND PARTICLES
+// ============================================================================
+class BgParticle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.radius = Math.random() * 2 + 0.5;
+    this.opacity = Math.random() * 0.3 + 0.1;
+  }
+  
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+  
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(16, 185, 129, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+// ============================================================================
+// CREATE INFRASTRUCTURE TOPOLOGY
+// ============================================================================
+const w = canvas.width;
+const h = canvas.height;
+
+// Create nodes
+const nodes = [
+  // Internet & ISP (top)
+  new InfraNode(w * 0.5, 80, 'internet', 'Internet'),
+  new InfraNode(w * 0.3, 180, 'isp', 'ISP-1'),
+  new InfraNode(w * 0.7, 180, 'isp', 'ISP-2'),
+  
+  // Cloud providers (top-center)
+  new InfraNode(w * 0.25, 300, 'cloud', 'AWS'),
+  new InfraNode(w * 0.5, 300, 'cloud', 'GCP'),
+  new InfraNode(w * 0.75, 300, 'cloud', 'Azure'),
+  
+  // Local development (bottom-left)
+  new InfraNode(w * 0.15, h - 180, 'local', 'Dev PC'),
+  
+  // Docker (center-left)
+  new InfraNode(w * 0.35, h - 250, 'docker', 'Docker'),
+  
+  // Kubernetes (center-right)
+  new InfraNode(w * 0.65, h - 250, 'k8s', 'K8s Cluster')
+];
+
+// Define connections
+const connections = [
+  // Internet to ISPs
+  [0, 1], [0, 2],
+  // ISPs to Clouds
+  [1, 3], [1, 4],
+  [2, 4], [2, 5],
+  // Cloud interconnections
+  [3, 4], [4, 5],
+  // Local to Docker
+  [6, 7],
+  // Docker to K8s
+  [7, 8],
+  // K8s to Clouds
+  [8, 3], [8, 4], [8, 5]
+];
+
+// ============================================================================
+// PIPELINE STAGES (bottom)
+// ============================================================================
+const pipelineY = h - 80;
+const stages = [
+  new PipelineStage(w * 0.1, pipelineY, 'Code', '📝', '#8b5cf6'),
+  new PipelineStage(w * 0.25, pipelineY, 'Build', '🔨', '#3b82f6'),
+  new PipelineStage(w * 0.4, pipelineY, 'Test', '✓', '#10b981'),
+  new PipelineStage(w * 0.55, pipelineY, 'Docker', '🐳', '#0ea5e9'),
+  new PipelineStage(w * 0.7, pipelineY, 'Deploy', '🚀', '#f59e0b'),
+  new PipelineStage(w * 0.85, pipelineY, 'Monitor', '📊', '#ef4444')
+];
+
+// ============================================================================
+// ANIMATION STATE
+// ============================================================================
+const bgParticles = Array.from({ length: 80 }, () => new BgParticle());
+let packets = [];
+let frameCount = 0;
+let currentStage = 0;
+let stageTimer = 0;
+
+// ============================================================================
+// DRAWING FUNCTIONS
+// ============================================================================
+
+function drawConnection(from, to, color = theme.primary + '40') {
+  const fromNode = nodes[from];
+  const toNode = nodes[to];
+  
+  // Gradient line
+  const gradient = ctx.createLinearGradient(fromNode.x, fromNode.y, toNode.x, toNode.y);
+  gradient.addColorStop(0, color);
+  gradient.addColorStop(0.5, color.replace('40', '80'));
+  gradient.addColorStop(1, color);
+  
+  ctx.beginPath();
+  ctx.moveTo(fromNode.x, fromNode.y);
+  ctx.lineTo(toNode.x, toNode.y);
+  ctx.strokeStyle = gradient;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  
+  // Animated dashes
+  ctx.setLineDash([8, 12]);
+  ctx.lineDashOffset = -(frameCount % 100);
+  ctx.strokeStyle = color.replace('40', '20');
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function drawPipelineConnections() {
+  for (let i = 0; i < stages.length - 1; i++) {
+    const from = stages[i];
+    const to = stages[i + 1];
+    
+    const isActive = i < currentStage;
+    const color = isActive ? from.color : from.color + '40';
+    
+    // Line
+    ctx.beginPath();
+    ctx.moveTo(from.x + from.width/2, from.y);
+    ctx.lineTo(to.x - to.width/2, to.y);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    
+    // Arrow
+    if (isActive) {
+      const arrowSize = 10;
+      const midX = (from.x + from.width/2 + to.x - to.width/2) / 2;
+      const midY = from.y;
+      
+      ctx.beginPath();
+      ctx.moveTo(midX - arrowSize, midY - arrowSize/2);
+      ctx.lineTo(midX, midY);
+      ctx.lineTo(midX - arrowSize, midY + arrowSize/2);
+      ctx.strokeStyle = from.color;
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+    }
+  }
+}
+
+function spawnPackets() {
+  frameCount++;
+  
+  // Random packet spawning
+  if (frameCount % 45 === 0) {
+    const randomConnection = connections[Math.floor(Math.random() * connections.length)];
+    const fromNode = nodes[randomConnection[0]];
+    const toNode = nodes[randomConnection[1]];
+    
+    // Color based on node type
+    const colors = {
+      internet: '#8b5cf6',
+      isp: '#3b82f6',
+      cloud: theme.primary,
+      local: '#f59e0b',
+      docker: '#0ea5e9',
+      k8s: '#326ce5'
+    };
+    
+    packets.push(new DataPacket(fromNode, toNode, colors[fromNode.type] || theme.primary));
+  }
+}
+
+function updatePipeline() {
+  stageTimer++;
+  
+  if (stageTimer > 90) {
+    stageTimer = 0;
+    currentStage = (currentStage + 1) % stages.length;
+    stages[currentStage].activate();
+  }
+  
+  stages.forEach(stage => stage.update());
+}
+
+function drawLegend() {
+  const legendX = 30;
+  const legendY = 30;
+  
+  // Title
+  ctx.font = 'bold 14px monospace';
+  ctx.fillStyle = theme.text;
+  ctx.textAlign = 'left';
+  ctx.fillText('DevOps Infrastructure Network', legendX, legendY);
+  
+  // Subtitle
+  ctx.font = '11px monospace';
+  ctx.fillStyle = theme.textDim;
+  ctx.fillText('Real-time pipeline & topology visualization', legendX, legendY + 20);
+  
+  // Stats
+  ctx.fillText(`Active Packets: ${packets.length}`, legendX, legendY + 40);
+  ctx.fillText(`Pipeline Stage: ${currentStage + 1}/${stages.length}`, legendX, legendY + 55);
+}
+
+// ============================================================================
+// MAIN ANIMATION LOOP
+// ============================================================================
+
+function animate() {
+  // Semi-transparent background for trail effect
+  ctx.fillStyle = theme.bg;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Background particles
+  bgParticles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  
+  // Connect nearby background particles
+  bgParticles.forEach((p1, i) => {
+    bgParticles.slice(i + 1, i + 5).forEach(p2 => {
+      const dx = p1.x - p2.x;
+      const dy = p1.y - p2.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(16, 185, 129, ${0.08 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    });
+  });
+  
+  // Draw infrastructure connections
+  connections.forEach(([from, to]) => {
+    drawConnection(from, to);
+  });
+  
+  // Update and draw infrastructure nodes
+  nodes.forEach(node => {
+    node.update();
+    node.draw();
+  });
+  
+  // Update and draw data packets
+  packets = packets.filter(packet => {
+    const done = packet.update();
+    packet.draw();
+    return !done;
+  });
+  
+  // Spawn new packets
+  spawnPackets();
+  
+  // Draw pipeline
+  drawPipelineConnections();
+  stages.forEach(stage => stage.draw());
+  updatePipeline();
+  
+  // Draw legend
+  drawLegend();
+  
+  requestAnimationFrame(animate);
+}
+
+// Start animation
+animate();
+
+// ============================================================================
+// OPTIONAL: Mouse interaction
+// ============================================================================
+canvas.addEventListener('mousemove', (e) => {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+  
+  // Attract nearby particles
+  bgParticles.forEach(p => {
+    const dx = mouseX - p.x;
+    const dy = mouseY - p.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    
+    if (dist < 180) {
+      const force = (180 - dist) / 180;
+      p.vx += (dx / dist) * force * 0.02;
+      p.vy += (dy / dist) * force * 0.02;
+      
+      // Limit velocity
+      const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      if (speed > 3) {
+        p.vx = (p.vx / speed) * 3;
+        p.vy = (p.vy / speed) * 3;
+      }
+    }
+  });
+});
